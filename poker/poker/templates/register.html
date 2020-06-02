@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title }
+  Register New User
+{% endblock %}
+
+{% block body %}
+<h1> New User information </h1>
+<form action = "{% url 'register'%}" method = "post">
+  {% csrf_token %}
+  <input name = "first_name" placeholder = "First Name"/>
+  <input name = "username" placeholder  = "Username"/>
+  <input name = "password" placeholder = "Password"/>
+  <input type = "Submit" placehodler = "Submit"/>
+</form>
+
+{%endblock%}
