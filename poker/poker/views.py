@@ -7,7 +7,7 @@ from django.urls import reverse
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
-        return render(request, "login.html", {"message": None})
+        return render(request, "startbootstrap-landing-page-gh-pages\index.html", {"message": "Please Log in"})
     context = {
         "user": request.user
     }
@@ -22,11 +22,11 @@ def loginScreen(request):
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "login.html", {"message": "Please Login Again"})
+        return render(request, "startbootstrap-landing-page-gh-pageslogin\index.html", {"message": "Please Login Again"})
 
 def logoutScreen(request):
     logout(request)
-    return render(request, "login.html", {"message": "Logged out User"})
+    return render(request, "startbootstrap-landing-page-gh-pageslogin\index.html", {"message": "Logged out User"})
 
 def registerScreen(request):
     first_name = request.GET["first_name"]
