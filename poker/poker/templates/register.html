@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title }
+{% block title %}
   Register New User
 {% endblock %}
 
@@ -10,7 +10,7 @@
   {% csrf_token %}
   <input name = "first_name" placeholder = "First Name"/>
   <input name = "username" placeholder  = "Username"/>
-  <input name = "password" placeholder = "Password"/>
+  <input name = "password" type = "password" placeholder = "Password"/>
   <input type = "Submit" placehodler = "Submit"/>
 </form>
 
