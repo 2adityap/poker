@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
+from poker.models import Tables
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
@@ -38,3 +38,30 @@ def registerScreen(request):
     user = User.objects.create_user(first_name=first_name, username=username, password=password)
     user.save()
     return HttpResponseRedirect(reverse("index"))
+
+def createRoom(request):
+    user = request.user
+    counter = 3
+    tables = Tables(code="{0}".format(counter))
+    tables.save()
+    tables.players.add(user)
+    tables.save()
+    context = {
+        "tables": tables,
+        "players": tables.players.all()
+    }
+    return render(request, "createRoom.html", context)
+
+def joinRoom(request):
+    roomCode = request.POST["roomCode"]
+    tables = Tables.objects.all()
+    for table in tables:
+        if table.code is roomCode:
+            user = request.user
+            table.players.add(user)
+            table.save()
+            context = {
+                "tables": table,
+                "players": table.players.all()
+            }
+    return render(request, "createRoom.html", context)

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Welcome User
+{% endblock %}
+
+{% block body %}
+<h1> Welcome to Table {{tables.code}} </h1>
+<ul>
+   {% for player in players %}
+   <li> {{player.username}} </li>
+   {% endfor %}
+</ul>
+{% endblock %}

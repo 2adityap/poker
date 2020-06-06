@@ -10,4 +10,12 @@
     <li> Currently logged in as {{user.username}} </li>
     <li> <a href="{% url 'logout' %}">Logout</a></li>
 </ul>
+
+<button> <a href="{% url 'createRoom' %}"> Create New Room </a></button>
+<form action = "{% url 'joinRoom'%}" method = "post">
+  {% csrf_token %}
+  <input name = "roomCode" placeholder = "Enter the Room Code"/>
+  <input name = "Submit" type = "Submit" placeholder = "Submit"/>
+</form>
+
 {% endblock %}
