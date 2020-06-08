@@ -12,7 +12,7 @@ def index(request):
     context = {
         "user": request.user
     }
-    return render(request,"code.html",context)
+    return render(request,"check.html",context)
 
 
 def loginScreen(request):
