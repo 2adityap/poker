@@ -14,7 +14,6 @@ def index(request):
     }
     return render(request,"check.html",context)
 
-
 def loginScreen(request):
     username = request.POST["username"] #get the username from the HTML page
     password = request.POST["password"] #get the password from the HTML page
