@@ -24,6 +24,11 @@ function swap(cards, a, b) {
   cards[b] = temp
 }
 
+//built in shuffle function
+function shuffle3(cards) {
+  cards.sort(() => Math.random() - 0.5)
+}
+
 
 
 const cards = ["1 Spades", "2 spades", "3 spades", "4 spades", "5 spades", "6 spades","7 spades", "8 spades","9 spades","10 spades",
@@ -35,5 +40,5 @@ const cards = ["1 Spades", "2 spades", "3 spades", "4 spades", "5 spades", "6 sp
 //callShuffle1(cards)
 //console.log(cards)
 //shuffle1(cards)
-shuffle2(cards)
+shuffle3(cards)
 console.log(cards)
