@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block body %}
-<h1> Welcome to Table {{tables.code}} </h1>
+<h1> Welcome to Table {{tables.id}} </h1>
+
+<h2> The code is {{tables.code}}
 <ul>
    {% for player in players %}
    <li> {{player.username}} </li>

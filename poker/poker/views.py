@@ -4,8 +4,8 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from poker.models import Tables
+import random
 # Create your views here.
-counter = 0
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "startbootstrap-landing-page-gh-pages/index.html", {"message": "Please Log in"})
@@ -41,9 +41,8 @@ def registerScreen(request):
 
 def createRoom(request):
     user = request.user  #get the current user logged in
-    global counter
-    counter = counter + 1 #increment the counter variable every time a room is created
-    tables = Tables(code="{0}".format(counter)) #Create new table, with counter being the new room code
+    counter = random.randrange(1000,100000,1) #increment the counter variable every time a room is created
+    tables = Tables(code=counter) #Create new table, with counter being the new room code
     tables.save()
     tables.players.add(user) #add the user who created the table to the table
     tables.save()
@@ -55,9 +54,15 @@ def createRoom(request):
 
 def joinRoom(request):
     roomCode = request.POST["roomCode"] #get the room code
+    code = int(roomCode)
+    print(type(code))
+    print("ROOM CODE: {0}".format(code))
     tables = Tables.objects.all() #get all the tables
     for table in tables:
-        if table.code is roomCode:  #if room code is one of the created table's room code
+        print("ROOM CODE PONN: {0}".format(table.code))
+        print(type(table.code))
+        if (table.code == code) :  #if room code is one of the created table's room code
+            print("INSIDE IF STATEMENT")
             user = request.user #get the current user logged in
             table.players.add(user) #add the user to the table
             table.save()
@@ -65,4 +70,5 @@ def joinRoom(request):
                 "tables": table,
                 "players": table.players.all()
             }
-    return render(request, "createRoom.html", context)
+            return render(request, "createRoom.html", context)
+    return HttpResponseRedirect(reverse("index"))
