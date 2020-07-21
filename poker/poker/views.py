@@ -30,7 +30,6 @@ def joinRoom(request):
     tables = Tables.objects.all() #get all the tables
     for table in tables:
         if (table.code == code) :  #if room code is one of the created table's room code
-            print("INSIDE IF STATEMENT")
             player_name = request.POST["player_name"]
             player = Players(name=player_name)
             player.save()
