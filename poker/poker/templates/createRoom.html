@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Welcome User
+<h1> Welcome to Table {{tables.id}} </h1>
 {% endblock %}
 
-{% block body %}
-<h1> Welcome to Table {{tables.id}} </h1>
-
-<h2> The code is {{tables.code}}
-<ul>
+{% block body %}  
+<div id="main-home-container">
+  <div class="intro-main-form-container">
+    <h2 class="title-2" style="color:white">The code is {{tables.code}}</h2>
+<ul class="title-2" style="color:white; " >
    {% for player in players %}
+<<<<<<< HEAD
    <li> {{player.name}} </li>
+=======
+   <li class="title-2" style="color:white; ">Username: {{player.username}} </li>
+>>>>>>> master
    {% endfor %}
 </ul>
+</div>
+</div>
 {% endblock %}
