@@ -70,5 +70,5 @@ def joinRoom(request):
                 "tables": table,
                 "players": table.players.all()
             }
-            return render(request, "createRoom.html", context)
+            return render(request, "table.html", context)
     return HttpResponseRedirect(reverse("index"))
